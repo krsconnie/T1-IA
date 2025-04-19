@@ -60,3 +60,22 @@ Por cada laberinto, el programa debe imprimir una línea con:
     13
     no hay solución
     20
+
+# Entrega
+
+Debes entregar los siguientes elementos:
+
+1. **Código fuente** del programa (en C, C++ o Python).
+2. **Informe breve** (máximo 5 páginas) que incluya:
+   - Descripción general del código y sus funciones principales.
+   - Un ejemplo de entrada/salida (distinto al del enunciado).
+
+---
+
+## Restricciones y Consideraciones
+
+- **El agente de búsqueda (DFS y costo uniforme) debe ser implementado manualmente**.  
+  No se permite usar funciones ya implementadas de librerías externas.
+  
+- El código debe ser **original y propio**.  
+  Cualquier evidencia de copia (entre estudiantes o desde internet) implicará una calificación de **1.0** para todos los involucrados.
