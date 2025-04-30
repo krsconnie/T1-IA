@@ -3,12 +3,11 @@
 
 ## Requisitos Previos
 
-Antes de ejecutar el juego, asegúrate de cumplir con los siguientes requisitos:
 
-1. **Tener Python instalado** (versión 3.7 o superior). Puedes descargarlo desde:
+1. **Tener Python instalado** (versión 3.7 o superior). Se puede descargar desde:
    [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
-2. **Instalar la biblioteca PyGame**. Para hacerlo, ejecuta en tu terminal:
+2. **Instalar la biblioteca PyGame**. Para hacerlo, ejecute en su terminal:
 
    ```bash
    pip install pygame
@@ -17,11 +16,11 @@ Antes de ejecutar el juego, asegúrate de cumplir con los siguientes requisitos:
 3. **Clonar el repositorio del proyecto** desde GitHub (o copiar los archivos fuente si ya los tienes):
 
    ```bash
-   git clone https://github.com/usuario/laberinto-saltarin.git
+   git clone 
    cd laberinto-saltarin
    ```
 
-   Reemplaza la URL con la correcta si es distinta.
+ 
 
 ---
 
@@ -29,8 +28,8 @@ Antes de ejecutar el juego, asegúrate de cumplir con los siguientes requisitos:
 
 - `main.py`: Punto de entrada del programa. Llama a la función `juego(nombre_archivo)` para iniciar la interfaz visual.
 - `visual.py`: Maneja la interfaz gráfica con PyGame. Permite visualizar los laberintos, navegar entre ellos y resolverlos con distintos algoritmos.
-- `lectura.py`: Lee y procesa uno o varios laberintos desde un archivo de entrada.
-- `agentes.py`: Contiene las implementaciones de búsqueda como DFS, Costo Uniforme y Costo Variable.
+- `lectura.py`: Lee y guarda la información del input.
+- `agentes.py`: Contiene las implementaciones de búsqueda como DFS, Costo Uniforme Constante y Costo Uniforme Variable.
 
 ---
 
@@ -76,27 +75,31 @@ Donde:
 
 ## Ejecución del Juego
 
-Desde una terminal, ejecuta:
+Desde una terminal, ejecute:
 
 ```bash
 python main.py archivo.txt
 ```
 
-Reemplaza `archivo.txt` con el nombre de tu archivo de entrada.
+Reemplace `archivo.txt` con el nombre de su archivo de entrada. También el repositorio se encuentra un "ejemplos.txt" con laberintos propuestos
 
 **Ejemplo:**
 
 ```bash
-python main.py laberintos.txt
+python main.py ejemplos.txt
 ```
 
-Esto abrirá una ventana con interfaz visual donde podrás explorar y resolver los laberintos.
+Esto ejecutará la interfaz donde se podrá observar el laberinto y el camino creado por los algoritmos
 
 ---
 
 ## Interfaz Gráfica y Controles
+![Screenshot from 2025-04-27 16-19-24](https://github.com/user-attachments/assets/f1258f7b-0e02-4f94-8eaf-4e27245e08bf)
+![Screenshot from 2025-04-25 17-35-38](https://github.com/user-attachments/assets/78c81ece-2259-4f23-a29e-ad272d7f2468)
 
-Una vez abierta la ventana del juego, tendrás acceso a los siguientes botones:
+
+
+Una vez abierta la ventana del juego, se tendrá acceso a los siguientes botones:
 
 - **Anterior**: Muestra el laberinto anterior del archivo.
 - **Siguiente**: Muestra el siguiente laberinto del archivo.
@@ -116,16 +119,12 @@ Visualmente:
 
 ## Posibles Errores Comunes
 
-- Si no ejecutas con un archivo como argumento, verás:
+- Si no se ejecuta con un archivo como argumento, verá:
   ```
   Uso: python main.py archivo.txt
   ```
-- Si el archivo no tiene el formato correcto o está incompleto, el programa puede cerrarse o no mostrar nada.
-- Asegúrate de terminar el archivo con un `0` en una línea separada para indicar el fin de los laberintos.
+- Si el archivo no tiene el formato correcto o está incompleto, verá:
 
----
-
-## Personalización
-
-- Puedes modificar o añadir algoritmos en `agentes.py`.
-- Puedes cambiar colores, tamaños de celda u otros aspectos visuales en `visual.py`.
+  ```
+  No se encontraron laberintos válidos.
+  ```
