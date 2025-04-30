@@ -86,7 +86,7 @@ Reemplace `archivo.txt` con el nombre de su archivo de entrada. También el repo
 **Ejemplo:**
 
 ```bash
-python main.py ejemplos.txt
+python main.py input.txt
 ```
 
 Esto ejecutará la interfaz donde se podrá observar el laberinto y el camino creado por los algoritmos
