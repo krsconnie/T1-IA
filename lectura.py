@@ -9,7 +9,7 @@ def leer_laberintos(nombre_archivo):
             linea = archivo.readline()
             if not linea or linea.strip() == '0': # Si encuentra una línea vacia o un 0 termina de leer
                 break
-            m, n, si, sj, gi, gj = map(int, linea.strip().split()) # Separa los valores de la línea, los convierte a enteros
+            m, n, ini_x, ini_y, dest_x, dest_y = map(int, linea.strip().split()) # Separa los valores de la línea, los convierte a enteros
                                                                     # y los asigna a las variables correspondientes
             grid = [] # Crea la matriz 
             for _ in range(m): # Lee las siguientes m líneas
@@ -20,8 +20,8 @@ def leer_laberintos(nombre_archivo):
             laberintos.append({ 
                 'filas': m,
                 'cols': n,
-                'inicio': (si, sj),
-                'meta': (gi, gj),
+                'inicio': (ini_x, ini_y),
+                'destino': (dest_x, dest_y),
                 'grid': grid
             })
     return laberintos
@@ -35,7 +35,7 @@ def imprimir_laberintos(laberintos): # Recibe la lista de laberintos
         print(f"\nLaberinto {idx + 1}")
         print(f"Tamaño: {lab['filas']} filas x {lab['cols']} columnas")
         print(f"Inicio: {lab['inicio']}")
-        print(f"Meta: {lab['meta']}")
+        print(f"Destino: {lab['destino']}")
         print("Grilla:")
         for fila in lab['grid']: # Imprime cada fila del laberinto (formando la matriz del laberinto)
             print(" ".join(str(num) for num in fila))

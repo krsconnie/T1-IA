@@ -2,7 +2,7 @@ import pygame
 import sys
 from lectura import leer_laberintos
 from agentes import dfs, costo_uniforme, costo_uniforme_variable
-# SUPERIMPORTANTE!!!! Recordar quitar anotaciones antes de entregar
+# SUPERIMPORTANTE!!!!Recordar quitar anotaciones antes de entregar
 
 # Constantes
 COLOR_FONDO = (224, 214, 138)  # amarillo pálido
@@ -81,12 +81,12 @@ def dibujar_botones(pantalla, fuente):
 # el camino a mostrar (puede ser nulo), el n° del laberinto y los pasos mostrados (empezando en 0)
 def dibujar_laberinto(pantalla, laberinto, fuente, camino=None, lab_index=None, pasos_mostrados=0):
    
-    # Obtener la información básica del laberinto (filas, columnas, inicio y meta)
+    # Obtener la información básica del laberinto (filas, columnas, inicio y destino)
     m = laberinto['filas']
     n = laberinto['cols']
     grid = laberinto['grid']
     inicio = laberinto['inicio']
-    meta = laberinto['meta']
+    destino = laberinto['destino']
 
     # Centrar el laberinto en la pantalla
     offset_x = (MAX_ANCHO - n * TAM_CELDA) // 2
@@ -112,8 +112,8 @@ def dibujar_laberinto(pantalla, laberinto, fuente, camino=None, lab_index=None, 
 
             # Pintar fondo celdas en el camino
             if camino:
-                for idx, (ci, cj) in enumerate(camino[:pasos_mostrados]):
-                    if ci == i and cj == j:
+                for idx, (cx, cy) in enumerate(camino[:pasos_mostrados]):
+                    if cx == i and cy == j:
                     # Escalar el color según la posición en el camino, podría ver si queda bonito con los números de distinto color
                         intensidad = idx / max(1, len(camino))  # valor entre 0 y 1
                     
@@ -134,16 +134,16 @@ def dibujar_laberinto(pantalla, laberinto, fuente, camino=None, lab_index=None, 
             pantalla.blit(texto, texto_rect)
 
     # Dibujar casillas de inicio
-    si, sj = inicio
-    x0 = offset_x + sj * TAM_CELDA
-    y0 = offset_y + si * TAM_CELDA
+    ix, iy = inicio
+    x0 = offset_x + iy * TAM_CELDA
+    y0 = offset_y + ix * TAM_CELDA
     rect_inicio = pygame.Rect(x0, y0, TAM_CELDA, TAM_CELDA)
     pygame.draw.rect(pantalla, COLOR_INICIO, rect_inicio, 3)
    
     # Dibujar casillas de meta
-    gi, gj = meta
-    xg = offset_x + gj * TAM_CELDA
-    yg = offset_y + gi * TAM_CELDA
+    dx, dy = destino
+    xg = offset_x + dy * TAM_CELDA
+    yg = offset_y + dx * TAM_CELDA
     rect_meta = pygame.Rect(xg, yg, TAM_CELDA, TAM_CELDA)
     pygame.draw.rect(pantalla, COLOR_META, rect_meta, 3)
 
@@ -159,9 +159,9 @@ def dibujar_camino(pantalla, camino, offset_x, offset_y, tam_celda, pasos_mostra
         pygame.draw.rect(pantalla, COLOR_LINEA, rect, width=4)
 
 
-def main():
+def juego(nombre_archivo):
     pygame.init()
-    laberintos = leer_laberintos("input.txt")
+    laberintos = leer_laberintos(nombre_archivo)
     if not laberintos:
         print("No se encontraron laberintos válidos.")
         return
@@ -223,58 +223,43 @@ def main():
 
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                
                 if BOTONES['siguiente'].collidepoint(pos):
                     lab_actual = (lab_actual + 1) % len(laberintos)
                     camino_actual = None
                     mensaje_error = ""
-                
                 elif BOTONES['anterior'].collidepoint(pos):
                     lab_actual = (lab_actual - 1) % len(laberintos)
                     camino_actual = None
                     mensaje_error = ""
-                
                 elif BOTONES['dfs'].collidepoint(pos):
                     camino_actual = dfs(lab)
                     pasos_mostrados = 0
-                
                     if camino_actual is None:
                         mensaje_error = "No hay solución usando DFS."
                         tiempo_mensaje_error = pygame.time.get_ticks()
                         print(mensaje_error)
-                
                     else:
                         mensaje_error = ""
                         print(f"Camino DFS encontrado: {camino_actual}")
-                
                 elif BOTONES['costo'].collidepoint(pos):
                     camino_actual = costo_uniforme(lab)
                     pasos_mostrados = 0
-                
                     if camino_actual is None:
                         mensaje_error = "No hay solución usando Costo Uniforme."
                         tiempo_mensaje_error = pygame.time.get_ticks()
                         print(mensaje_error)
-                
                     else:
                         mensaje_error = ""
                         print(f"Camino Costo Uniforme encontrado: {camino_actual}")
-                
                 elif BOTONES['costo var'].collidepoint(pos):
                     camino_actual = costo_uniforme_variable(lab)
                     pasos_mostrados = 0
-                
                     if camino_actual is None:
                         mensaje_error = "No hay solución usando Costo variable."
                         tiempo_mensaje_error = pygame.time.get_ticks()
                         print(mensaje_error)
-                
                     else:
                         mensaje_error = ""
                         print(f"Camino Costo variable encontrado: {camino_actual}")
 
         reloj.tick(5)
-
-
-if __name__ == '__main__':
-    main()
