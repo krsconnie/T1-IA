@@ -16,10 +16,10 @@
 3. **Clonar el repositorio del proyecto** desde GitHub (o copiar los archivos fuente si ya los tienes):
 
    ```bash
-   git clone 
+   git clone https://github.com/krsconnie/T1-IA.git 
    cd laberinto-saltarin
    ```
-
+El ejemplo muestra https, pero en github se encuentran más formas de clonar un repositorio.
  
 
 ---
